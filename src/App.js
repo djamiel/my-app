@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  createBrowserRouter,
+  Route,
+  createRoutesFromElements,
+  RouterProvider,
+} from "react-router-dom";
+
+//pages
+import Home from "./pages/Home";
+import Lightside from "./pages/Lightside";
+import Darkside from "./pages/Darkside";
+
+// layouts
+import Rootlayout from "./layouts/RootLayout";
+
+//this is the browser router, it routes all the pages in the app, it uses createBrowserRouter
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Rootlayout />}>
+      <Route index element={<Home />} />
+      <Route path="lightside" element={<Lightside />} />
+      <Route path="darkside" element={<Darkside />} />
+    </Route>
+  )
+);
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
